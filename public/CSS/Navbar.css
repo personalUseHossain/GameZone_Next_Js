@@ -1,0 +1,190 @@
+nav{
+    display: flex;
+    gap: 5rem;
+    height: 5rem;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    width: 100vw;
+    z-index: 130;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+}
+nav a{
+    text-decoration: none;
+    color: white;
+}
+nav .logo-menu{
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+}
+nav .logo-container{
+    display: flex;
+    align-items: center;
+}
+nav  .menu{
+    display: flex;
+    gap: 3rem;
+
+}
+nav .logo-menu .search input{
+    padding: 6px 10px;
+    width: 25vw;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: 1px solid rgb(255, 255, 255);
+    border-right: none;
+    color: white;
+    font-size: 15px;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+}
+nav .logo-menu .search input::placeholder{
+    color: white;
+}
+
+
+nav .logo-menu .search .search_icon_input{
+    display: block;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7),  rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+nav .logo-menu .search{
+    display: flex;
+}
+
+nav .user{
+    display: flex;
+    gap: 2rem;
+}
+nav .user a{
+    padding: 7px;
+    border-radius: 5px;
+    
+}
+
+nav .logo-menu svg{
+    display: none;
+    width: 20px;
+    background: #2f2f2fa8;
+    padding: 10px;
+    border-radius: 50%;
+}
+nav .logo-menu .bar{
+    background-color: transparent;
+    border-radius: 0;
+    display: none;
+    font-size: 25px;
+}
+
+nav .menu-user{
+    display: flex;
+    gap: 5rem;
+    align-items: center;
+    transition: height .7s ease-in-out;
+    color: black;
+}
+nav .user .links_small{
+    display: none;
+}
+nav .user .links_big{
+    display: flex;
+    gap: 2rem;
+}
+nav .user img{
+    border-radius: 50%;
+}
+
+@media (width < 1266px) {
+    nav .logo-menu .search {
+        display: none;
+    }
+    nav .logo-menu svg{
+        display: block;
+    }
+    .logo{
+        font-size: 20px;
+    }
+}
+@media (width < 925px) {
+    nav{
+        gap: 0;
+    }
+    nav a{
+        text-decoration: none;
+        color: black;
+    }
+    .menu-user{
+        overflow: hidden;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        gap: 5rem;
+        width: 100vw;
+        z-index: 130;
+        color: black;
+    }
+    nav .logo-container h1{
+        display: none;
+    }
+    nav .user .links_small{
+        display: flex;
+        gap: 0.5rem;
+        width: 5rem;
+        align-items: center;
+        justify-content: start;
+        margin-right: 4rem;
+    }
+    nav .user .links_small svg{
+        width: 24px;
+    }
+    nav .user .links_big{
+        display: none;
+    }
+    nav .menu{
+        flex-direction: column;
+        margin-top: 15rem;
+        gap: 5rem;
+    }
+    nav .logo-menu{
+        justify-content: space-around;
+        width: 100vw;
+    }
+    nav .logo-menu .bar{
+        display: block;
+        position: relative;
+        z-index: 1000;
+    }
+    nav .logo-menu svg{
+        display: none;
+    }
+    nav .logo-menu .search {
+        display: block;
+    }
+    nav .logo-menu .search{
+        display: flex ;
+    }
+    nav .logo-menu .search .search_icon_input{
+        display: block;
+        border-radius: 0;
+    }
+    nav .logo-menu{
+        gap: 0;
+    }
+}
+@media (width < 500px) {
+    nav .logo-menu .search{
+        display: none;
+    }
+    nav .logo-menu svg{
+        display: block;
+    }
+    
+}
+
