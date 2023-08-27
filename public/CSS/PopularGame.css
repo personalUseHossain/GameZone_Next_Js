@@ -1,0 +1,65 @@
+.popular_games{
+    padding: 100px 50px;
+    background: linear-gradient(84deg, rgba(10,217,204,0.9360994397759104) 1%, rgba(6,20,211,0.9248949579831933) 47%, rgba(126,168,230,0.5887605042016807) 100%), url('https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?cs=srgb&dl=pexels-lucie-liz-3165335.jpg&fm=jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    z-index: 10;
+    color: white;
+}
+.popular_games::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.popular_games .logo{
+    padding: 5px 10px;
+    border-radius: 10px;
+    background: white;
+    margin-bottom: 2rem;
+    height: auto;
+    min-width: 54px;
+}
+
+.sega-game-container{
+    display: flex;
+    gap: 5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    width: fit-content; 
+}
+.game-section{
+    overflow-x: auto;
+    margin-bottom: 5rem;
+}
+.game-section::-webkit-scrollbar{
+    display: none;
+}
+
+  .game {
+    width: 30vw;
+    flex: 0 0 auto;
+    max-width: 15rem;
+  }
+  
+  .game img {
+    width: 100%; 
+    height: auto; 
+  }
+
+@media (width < 582px){
+    .game{
+        width: auto;
+    }
+}
+  
+
+  
+  
+  
+  
