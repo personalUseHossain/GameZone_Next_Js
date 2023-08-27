@@ -1,0 +1,95 @@
+.login{
+    background: url('https://www.techbooky.com/wp-content/uploads/2023/05/gaming.png');
+    color: white;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 150px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.loginForm{
+    display: flex;
+    border-radius: 10px;
+    /* border: 1px solid red; */
+    justify-content: center;
+    place-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    height: 45rem;
+    background: rgba(0, 0, 0, 0.696);
+    width: 32rem;
+}
+.inputs label svg{
+    margin-right: 5px;
+    font-size: 20px;
+}
+.loginForm .inputs{
+    display: grid;
+    gap: 2rem;
+}
+.inputs input{
+    padding: 5px;
+    width: 20rem;
+}
+.loginForm input[type=checkbox]{
+    width: 17px;
+    height: 17px;
+
+}
+.loginForm input{
+    background-color: transparent;
+    border: none;
+    border-bottom:2px solid skyblue ;
+    color: skyblue;
+    font-size: 15px;
+
+}
+
+.loginForm button{
+    padding: 7px;
+    border-radius: 5px;
+    width: 23rem;
+    background-color: skyblue;
+}
+.loginForm label{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.loginForm .or{
+    position: relative;
+    width: 10rem;
+    text-align: center;
+}
+.loginForm .or::before,
+.loginForm .or::after{
+    content: "";
+    position: absolute;
+    background: white;
+    height: 2px;
+    width: 10rem;
+    top: .5rem;
+}
+.loginForm .or::before{
+    left: 6rem;
+}
+.loginForm .or::after{
+    right: 6rem;
+}
+@media (width < 654px) {
+    .loginForm{
+        /* height: 20rem; */
+        width: 25rem;
+        height: 45rem;
+    }
+    .loginForm input{
+        width: 14rem;
+    }
+    .loginForm button{
+        width: 18rem;
+    }
+}
