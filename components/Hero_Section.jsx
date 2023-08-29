@@ -1,15 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import "@/public/CSS/Hero_Section.css";
+import React, { useState, useEffect } from "react"; // react hooks
+
+import Image from "next/image"; // Image tag from next js
+
+import "@/public/CSS/Hero_Section.css"; // css
 
 //image
 import game_controller_pic from "/public/images/game_controller_pic.png";
-import imageList from "@/utils/RoundImage";
+import imageList from "@/utils/RoundImage"; // image linked list
 
 export default function Hero_Section() {
-  let current = imageList.head;
-  const [currentImage, setCurrentImage] = useState(current.val.src);
+  //for make the slider
+  let current = imageList.head; //image linked list head
+  const [currentImage, setCurrentImage] = useState(current.val.src); //current image state
+
+  //change image
   useEffect(() => {
     const interval = setInterval(() => {
       current = current.next;
@@ -20,6 +25,7 @@ export default function Hero_Section() {
       clearInterval(interval);
     };
   }, []);
+
   return (
     <div className="hero-container">
       <div className="hero-slider">

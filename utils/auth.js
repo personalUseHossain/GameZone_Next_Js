@@ -1,10 +1,10 @@
-import Cookies from 'universal-cookie';
-import jwt from 'jsonwebtoken';
+import Cookies from 'universal-cookie'; // for get cookies
+import jwt from 'jsonwebtoken'; // to sign, verify, decode jwt
 
 
-const cookies = new Cookies();
+const cookies = new Cookies(); // to get cookies
 
-
+// to check if user is authenticated or not
 export async function isAuth() {
     const token = cookies.get('gamezonetoken');
     try {
@@ -20,24 +20,10 @@ export async function isAuth() {
     }
 }
 
+//signout function
 export function signout() {
     return cookies.remove('gamezonetoken', { path: '/', expires: 0 });
 }
 
-export async function getUserData() {
-    const token = cookies.get('gamezonetoken');
-    try {
-        if (token) {
-            const verify = await jwt.verify(token, process.env.JWT_SECRET);
-            if (verify) {
-                const { name, email, img } = verify;
-                return { userData: { name, email, img }, status: true };
-            }
-            return { status: false };
-        }
-        return { status: false };
-    } catch (error) {
-        return { status: false };
-    }
-}
+
 

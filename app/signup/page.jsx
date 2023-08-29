@@ -1,4 +1,6 @@
 "use client"; //to use react hooks
+
+//font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
@@ -6,13 +8,17 @@ import {
   faLock,
   faUser,
 } from "@fortawesome/free-solid-svg-icons"; //fontawesome
+
 import React from "react"; //react for hooks
 import { useState } from "react"; //useState hooks
-import "@/public/CSS/Login.css"; //adding styling
 import Link from "next/link"; //for navigate to login page
+import { useRouter } from "next/navigation"; //for redirect user to login page
+
+import "@/public/CSS/Login.css"; //adding styling
+
+//alert
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
 import "react-toastify/dist/ReactToastify.css"; //for alert/message css
-import { useRouter } from "next/navigation"; //for redirect user to login page
 
 export default function page() {
   const router = useRouter(); // to push user to login page

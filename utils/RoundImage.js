@@ -1,3 +1,5 @@
+// all images
+
 import cod from "@/public/images/Hero_slider/cod.webp";
 import fortnite from "@/public/images/Hero_slider/fortnite.webp";
 import gta from "@/public/images/Hero_slider/gta.jpg";
@@ -9,13 +11,15 @@ import sega from "@/public/images/Hero_slider/sega.webp";
 import xbox from "@/public/images/Hero_slider/xbox.jpg";
 
 
-
+//main node to set new node
 class Node {
     constructor(val) {
         this.val = val;
         this.next = null;
     }
 }
+
+//main linked list
 class RoundList {
     constructor() {
         this.head = null;
@@ -37,6 +41,8 @@ class RoundList {
     }
 }
 
+
+//pushing image to RoundList
 const imageList = new RoundList();
 imageList.push(cod)
 imageList.push(fortnite)
@@ -48,4 +54,5 @@ imageList.push(pubg)
 imageList.push(sega)
 imageList.push(xbox)
 
+//export
 module.exports = imageList;

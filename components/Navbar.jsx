@@ -1,18 +1,22 @@
 "use client";
-import "@/public/CSS/Navbar.css";
-import Link from "next/link";
-import Image from "next/image";
+
+import "@/public/CSS/Navbar.css"; //import css
+
+//from next/*
+import Link from "next/link"; // for navigate between pages
+import Image from "next/image"; // Image tag from next
 
 //check if user authenticated or not
 // import { verifyToken } from "@/utils/verifyToken";
 
 //images
 import logo from "@/public/images/logo.png";
-import user from "@/public/images/user.jpg";
+import UserImage from "@/public/images/user.jpg";
 
 import { MyContext } from "@/app/layout";
 
-import { isAuth, signout, getUserData } from "@/utils/auth";
+import { getUserData } from "@/utils/getUserData"; // getting user data from cookies
+import { signout } from "@/utils/auth"; //signout function from utils/auth
 
 //font awesome
 import {
@@ -25,26 +29,38 @@ import {
   faArrowRightFromBracket,
   faMessage,
   faCircleQuestion,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useEffect, useState } from "react";
+} from "@fortawesome/free-solid-svg-icons"; //all icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //<Fontawesome icon={} /> for this
+
+import { useContext, useEffect, useState } from "react"; // react hooks
 
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
 import "react-toastify/dist/ReactToastify.css"; //for alert/message css
 import { useRouter } from "next/navigation"; //for redirect user to login page
-
-async function checkToken() {
-  const check = await isAuth();
-  return check;
-}
+import Cookies from "universal-cookie";
 
 export default function Navbar() {
-  let menuHeight = { height: "" };
-  const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
-  const { login, setLogin } = useContext(MyContext);
-  const [userData, setUserData] = useState({ userData: null, status: false });
+  let menuHeight = { height: "" }; //navbar menu-user(home, about etc) height on small device
+  const router = useRouter(); // for push user to other pages
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // navbar menu-user (home, about etc) is open or not
+  const [openMenu, setOpenMenu] = useState(false); // don't know what
+  const { login, setLogin } = useContext(MyContext); // getting context data (check if user logged in or not)
+  const [userData, setUserData] = useState([]); // userData if logged in
+  const cookies = new Cookies(); // for getting cookies
+  const token = cookies.get("gamezonetoken"); // token of this website
+
+  // to set the login if user login which is verify in utils/auth.js
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getUserData();
+      if (data) {
+        setUserData(data);
+      }
+    }
+    fetchData();
+  }, [token]);
+
+  //toggle user-menu
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
     if (!isMenuOpen) {
@@ -52,23 +68,17 @@ export default function Navbar() {
       document.body.style.overflow = "hidden";
     } else {
       document.querySelector(".menu-user").style.height = "";
+      document.body.style.overflow = "auto";
     }
   }
+
+  //logout function
   function logout() {
     signout();
     setLogin(false);
     toast.success("Logged out");
     router.push("/");
   }
-  useEffect(() => {
-    async function fetchData() {
-      const userData = await getUserData();
-      if (userData.status) {
-        setUserData(userData);
-      }
-    }
-    fetchData();
-  }, []);
 
   return (
     <nav>
@@ -151,7 +161,7 @@ export default function Navbar() {
                       ".user-content-container"
                     ).style.display = "block";
                   }}
-                  src={user}
+                  src={userData.img === null ? UserImage : userData.img}
                   width={40}
                   height={40}
                   alt="User"
@@ -159,7 +169,12 @@ export default function Navbar() {
                 <div className="user-content-container">
                   <div className="user-top">
                     <div className="user-top-left">
-                      <Image src={user} width={40} height={40} alt="User" />
+                      <Image
+                        src={userData.img === null ? UserImage : userData.img}
+                        width={40}
+                        height={40}
+                        alt="User"
+                      />
                       <FontAwesomeIcon
                         icon={faXmark}
                         onClick={() => {
@@ -170,8 +185,8 @@ export default function Navbar() {
                       />
                     </div>
                     <div className="user-top-right">
-                      <h3>Muhammad Hossain</h3>
-                      <small>personal.mdhossain@gmail.com</small>
+                      <h3>{userData.name}</h3>
+                      <small>{userData.email}</small>
                     </div>
                   </div>
                   <div className="user-bottom">

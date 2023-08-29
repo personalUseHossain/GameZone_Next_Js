@@ -5,7 +5,6 @@ import Navbar from '@/components/Navbar'
 
 import { createContext, useState } from 'react'
 import { isAuth } from '@/utils/auth'
-import { faColonSign } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -15,13 +14,10 @@ export const metadata = {
 }
 export const MyContext = createContext();
 
-async function checkToken() {
-  const check = await isAuth()
-  return check;
-}
 
 export default function RootLayout({ children }) {
-  const [login, setLogin] = useState(checkToken());
+  const [login, setLogin] = useState(isAuth());
+
   return (
     <html lang="en">
       <body>

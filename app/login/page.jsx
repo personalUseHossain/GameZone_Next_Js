@@ -1,21 +1,30 @@
 "use client";
+
+//font awesome
 import { faKey, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useState } from "react";
-import { MyContext } from "@/app/layout";
-import "@/public/CSS/Login.css";
-import Link from "next/link";
+
+import React, { useContext, useState } from "react"; //react hooks
+import Link from "next/link"; // link from next js to navigate user to signup
+import { useRouter } from "next/navigation"; //for redirect user to login page
+import { MyContext } from "@/app/layout"; //context api
+
+import "@/public/CSS/Login.css"; //css
+
+//alert
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
 import "react-toastify/dist/ReactToastify.css"; //for alert/message css
-import { useRouter } from "next/navigation"; //for redirect user to login page
 
 export default function page() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); //toggle showpassword function
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
-  });
-  const router = useRouter();
+  }); //input values state
+  const { login, setLogin } = useContext(MyContext); // get value's from context
+  const router = useRouter(); //to push user to other page after logged in
+
+  //hanlde input change and set the value on the input value state
   function handleInputChange(e) {
     let name = e.target.name,
       value = e.target.value;
@@ -24,8 +33,8 @@ export default function page() {
       [name]: value,
     });
   }
-  const { login, setLogin } = useContext(MyContext);
 
+  //login function hanlde submit form
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -56,6 +65,7 @@ export default function page() {
       console.log(err);
     }
   }
+
   return (
     <div className="login">
       <ToastContainer />

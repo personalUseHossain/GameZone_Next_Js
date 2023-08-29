@@ -1,5 +1,7 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose' //mongoose
 
+
+//conneting to database
 export async function connect() {
     try {
         mongoose.connect(process.env.DB_URL);
