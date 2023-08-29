@@ -1,7 +1,8 @@
 "use client";
 import { faKey, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { MyContext } from "@/app/layout";
 import "@/public/CSS/Login.css";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
@@ -23,6 +24,7 @@ export default function page() {
       [name]: value,
     });
   }
+  const { login, setLogin } = useContext(MyContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -35,10 +37,12 @@ export default function page() {
         body: JSON.stringify(userDetails),
       });
       const data = await res.json();
+      console.log(data);
       if (data.status === 200) {
         toast.success(data.message, {
           onClose: () => {
             router.push("/");
+            setLogin(true);
           },
         });
         setTimeout(() => {
