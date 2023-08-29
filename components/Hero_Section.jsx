@@ -5,7 +5,7 @@ import "@/public/CSS/Hero_Section.css";
 
 //image
 import game_controller_pic from "/public/images/game_controller_pic.png";
-import imageList from "@/components/RoundImage";
+import imageList from "@/utils/RoundImage";
 
 export default function Hero_Section() {
   let current = imageList.head;
@@ -23,7 +23,13 @@ export default function Hero_Section() {
   return (
     <div className="hero-container">
       <div className="hero-slider">
-        <img src={currentImage} className="hero-slider-image" alt="404" />
+        <Image
+          width={1000}
+          height={1000}
+          src={currentImage}
+          className="hero-slider-image"
+          alt="404"
+        />
       </div>
       <div className="hero-section">
         <div className="hero-left">
