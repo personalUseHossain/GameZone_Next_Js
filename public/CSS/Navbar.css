@@ -60,11 +60,12 @@ nav .logo-menu .search{
 nav .user{
     display: flex;
     gap: 2rem;
+    position: relative;
 }
 nav .user a{
     padding: 7px;
     border-radius: 5px;
-    
+
 }
 
 nav .logo-menu svg{
@@ -87,6 +88,7 @@ nav .menu-user{
     align-items: center;
     transition: height .7s ease-in-out;
     color: black;
+    height: auto;
 }
 nav .user .links_small{
     display: none;
@@ -113,6 +115,9 @@ nav .user img{
 @media (width < 925px) {
     nav{
         gap: 0;
+    }
+    nav .menu-user{
+        height: 0;
     }
     nav a{
         text-decoration: none;
@@ -185,6 +190,53 @@ nav .user img{
     nav .logo-menu svg{
         display: block;
     }
+
+}
+
+
+
+
+/* user-content-container */
+.user-content-container{
+    overflow-x: auto;
+    position: fixed;
+    top: 5rem;
+    right: 2rem;
+    padding: 20px;
+    width: 12rem;
+    background: white;
+    color: black;
+    border-radius: .5rem;
+    cursor: auto;
+    display: none;
+}
+.user-content-container .user-top-left{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.user-content-container .user-top-left svg{
+    padding: 5px;
+    border-radius: 50%;
+}
+.user-content-container .user-top-left svg:hover{
+    background: rgba(0, 0, 0, 0.349);
+}
+.user-content-container .user-bottom {
+    margin-top: 2rem;
+}
+.user-content-container .user-bottom .user-bottom-content{
+    height: 3rem;
+    display: flex;
+    gap: 1rem;
+    background: white;
+    align-items: center;
+    cursor: pointer;
+    padding-left: 10px;
     
+}
+.user-content-container .user-bottom .user-bottom-content:hover{
+    background: rgba(0, 0, 0, 0.14);
 }
 
