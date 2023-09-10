@@ -19,7 +19,8 @@ export async function POST(req) {
             email: email,
             password: hashedPassword
         }) // create user
-        const result = await newUser.save(); //save user
+        console.log(newUser)
+        await newUser.save(); //save user
         return NextResponse.json({ message: "User Registration Success. Navigating to login page", status: 201 }, { status: 201 }) //send response 
     } catch (error) {
         return NextResponse.json({ error: "Internal Server Error, Please try again later", error, status: 500 }, { status: 500 }) // listen for catch/error
