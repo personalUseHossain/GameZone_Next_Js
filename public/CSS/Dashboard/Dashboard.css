@@ -1,0 +1,23 @@
+.total-container{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 5rem;
+    width: 70vw;
+    margin-top: 3rem;
+}
+.total{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 0, 0.622);
+    width: 90%;
+    height: 10rem;
+}
+.graph{
+    /* border: 2px solid black; */
+    height: 25rem;
+    margin-top: 2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: whitesmoke;
+}
