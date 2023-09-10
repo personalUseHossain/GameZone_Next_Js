@@ -2,7 +2,7 @@
 import userCollection from '@/models/userModels' //user model
 import { connect } from '@/db/db' //db connetion
 import { NextResponse } from 'next/server'; // res object to send response to frontend
-import bcrypt from 'bcryptjs';  //for hash password
+import bcrypt from 'bcryptjs';  //for compare password
 import jwt from 'jsonwebtoken'; // for sign cookie
 
 connect() //conneting to db
@@ -21,11 +21,14 @@ export async function POST(req) {
             email: findUser.email,
             img: findUser.img || null
         } // cookie payload
-        const token = await jwt.sign(tokenPayload, process.env.JWT_SECRET)  //sign cookie with jsonwebtoken
 
+        if (findUser._doc && findUser._doc.isAdmin) {
+            tokenPayload.isAdmin = true;
+        }
+        const token = await jwt.sign(tokenPayload, process.env.JWT_SECRET)  //sign cookie with jsonwebtoken
         //expires date of cookie
-        const expirationDate = new Date();
-        expirationDate.setMonth(expirationDate.getMonth() + 1);
+        // const expirationDate = new Date();
+        // expirationDate.setMonth(expirationDate.getMonth() + 1);
 
         //creating response and attach the cookie with it
         const response = NextResponse.json({
@@ -42,6 +45,6 @@ export async function POST(req) {
         })
         return response; //send response
     } catch (error) {
-        return NextResponse.json({ error: "Internal server error", status: 500 }, { status: 500 }) //catch for error
+        return NextResponse.json({ error: "Internal server error", status: 500, error }, { status: 500 }) //catch for error
     }
 }
