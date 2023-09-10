@@ -5,19 +5,16 @@ import jwt from 'jsonwebtoken'; // to sign, verify, decode jwt
 const cookies = new Cookies(); // to get cookies
 
 // to check if user is authenticated or not
-export async function isAuth() {
+export function isAuth() {
     const token = cookies.get('gamezonetoken');
-    try {
-        if (token) {
-            const verify = await jwt.verify(token, process.env.JWT_SECRET);
-            console.log(verify)
-            if (verify) return true;
-            return false;
-        }
-        return false
-    } catch (error) {
-        return false
+    if (token) {
+        // console.log(jwt.verify(token, "helloworldhowareyouiamhossainandiliketowritecode"))
+        const data = jwt.decode(token);
+        if (data) return true;
+        return false;
     }
+    return false
+
 }
 
 //signout function
