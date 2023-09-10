@@ -11,7 +11,7 @@ import Image from "next/image"; // Image tag from next
 
 //images
 import logo from "@/public/images/logo.png";
-import UserImage from "@/public/images/user.jpg";
+import notloginimage from "@/public/images/userImage.png";
 
 import { MyContext } from "@/app/layout";
 
@@ -39,7 +39,7 @@ import "react-toastify/dist/ReactToastify.css"; //for alert/message css
 import { useRouter } from "next/navigation"; //for redirect user to login page
 import Cookies from "universal-cookie";
 
-export default function Navbar() {
+export default function Navbar(props) {
   let menuHeight = { height: "" }; //navbar menu-user(home, about etc) height on small device
   const router = useRouter(); // for push user to other pages
   const [isMenuOpen, setIsMenuOpen] = useState(false); // navbar menu-user (home, about etc) is open or not
@@ -60,7 +60,7 @@ export default function Navbar() {
     fetchData();
   }, [token]);
 
-  //toggle user-menu
+  // //toggle user-menu
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
     if (!isMenuOpen) {
@@ -79,9 +79,9 @@ export default function Navbar() {
     toast.success("Logged out");
     router.push("/");
   }
-
+  const userImage = userData.img === null ? notloginimage : userData.img;
   return (
-    <nav>
+    <nav style={{ display: props.style }}>
       <ToastContainer />
       {!openMenu ? (
         <>
@@ -127,10 +127,23 @@ export default function Navbar() {
           </div>
           <div className="menu-user" style={menuHeight}>
             <div className="menu">
-              <Link href={"/"}>Home</Link>
-              <Link href={"/games"}>Games</Link>
-              <Link href={"/about"}>About</Link>
-              <Link href={"/contact"}>Contact</Link>
+              <Link onClick={toggleMenu} href={"/"}>
+                Home
+              </Link>
+              {userData.isAdmin && (
+                <Link onClick={toggleMenu} href={"/dashboard"}>
+                  Dashboard
+                </Link>
+              )}
+              <Link onClick={toggleMenu} href={"/games"}>
+                Games
+              </Link>
+              <Link onClick={toggleMenu} href={"/about"}>
+                About
+              </Link>
+              <Link onClick={toggleMenu} href={"/contact"}>
+                Contact
+              </Link>
             </div>
           </div>
           <div
@@ -161,7 +174,7 @@ export default function Navbar() {
                       ".user-content-container"
                     ).style.display = "block";
                   }}
-                  src={userData.img === null ? UserImage : userData.img}
+                  src={userImage}
                   width={40}
                   height={40}
                   alt="User"
@@ -170,7 +183,7 @@ export default function Navbar() {
                   <div className="user-top">
                     <div className="user-top-left">
                       <Image
-                        src={userData.img === null ? UserImage : userData.img}
+                        src={userImage}
                         width={40}
                         height={40}
                         alt="User"
