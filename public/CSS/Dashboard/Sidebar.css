@@ -1,0 +1,28 @@
+.dashboard .sidebar{
+    display: grid;
+    align-content: space-around;
+    height: 100vh;
+    padding: 0 30px;
+    width: 13rem;
+}
+.dashboard .sidebar .dashboard_logo{
+    display: flex;
+    align-items: center;
+}
+.dashboard .sidebar .dashboard_menu{
+    display: grid;
+    gap: 1rem;
+}
+.dashboard .sidebar .dashboard_menu a{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 20px;
+}
+.dashboard .sidebar .dashboard_menu a:hover{
+    background-color: black;
+    color: white;
+}
