@@ -3,8 +3,11 @@ import '@/public/CSS/global.css'
 
 import Navbar from '@/components/Navbar'
 
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import { isAuth } from '@/utils/auth'
+import { usePathname } from 'next/navigation'
+
+
 
 
 
@@ -15,14 +18,28 @@ export const metadata = {
 export const MyContext = createContext();
 
 
+
+
 export default function RootLayout({ children }) {
-  const [login, setLogin] = useState(isAuth());
+  const [login, setLogin] = useState(false);
+
+
+  useEffect(() => {
+    const fetchAuthStatus = async () => {
+      setLogin(await isAuth())
+    };
+    console.log(login)
+    fetchAuthStatus();
+  }, []);
+
+  const pathname = usePathname()
+  const isDashboardPage = pathname.startsWith('/dashboard') ? true : false;
 
   return (
     <html lang="en">
       <body>
         <MyContext.Provider value={{ login, setLogin }}>
-          <Navbar />
+          <Navbar style={isDashboardPage ? 'none' : 'flex'} />
           {children}
         </MyContext.Provider>
       </body>
