@@ -21,8 +21,11 @@ const userSchema = mongoose.Schema({
     }
 })
 
+
+
 //user mode
 mongoose.models = {};
 const userCollection = mongoose.models.user || mongoose.model('users', userSchema);
+
 
 export default userCollection; //export 
