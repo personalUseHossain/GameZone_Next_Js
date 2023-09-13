@@ -1,24 +1,28 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDropzone } from "react-dropzone";
-import "@/public/CSS/Dashboard/Create_game.css";
+import React, { useCallback, useEffect, useState } from "react"; //state
+import { useDropzone } from "react-dropzone"; // dropzone for import images
+import "@/public/CSS/Dashboard/Create_game.css"; //css
+
+//fontawesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faXmark } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
-// import { uploadPhoto } from "@/actions/uploadPhoto";
-//alert
+
+import Image from "next/image"; // <img/>
+
+// alert
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
 import "react-toastify/dist/ReactToastify.css"; //for alert/message css
 
 export default function Page() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([]); //all droped image state
   const [inputValue, setInputValue] = useState({
     name: "",
     link: "",
     details: "",
     category: "",
-  });
+  }); //all input state
 
+  //for hanlde input change
   function hanldeInputChange(e) {
     let name = e.target.name,
       value = e.target.value;
@@ -26,12 +30,14 @@ export default function Page() {
       ...prevState,
       [name]: value,
     }));
-    console.log(inputValue);
   }
 
+  // for save the image droped on dropzone on images state
   const onDrop = useCallback((acceptedFiles) => {
     setImages((prevImages) => [...prevImages, ...acceptedFiles]);
   }, []);
+
+  // not allowing admin to drop more than 4 image
   useEffect(() => {
     if (images.length > 4) {
       toast.error("Can't choice more than 4 image");
@@ -39,21 +45,26 @@ export default function Page() {
     }
     console.log(images);
   }, [images]);
+
+  //don't know what
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
   });
 
+  // remove image from images state
   const removeImage = (indexToRemove) => {
     setImages((prevImages) => {
       return prevImages.filter((_, index) => index !== indexToRemove);
     });
   };
 
+  //handle form submit
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // not allowing to reload page
 
-    const formData = new FormData();
+    const formData = new FormData(); // to send on backend
 
+    //appeding data to formData
     for (let i = 0; i < images.length; i++) {
       formData.append("files", images[i]);
     }
@@ -62,18 +73,20 @@ export default function Page() {
     formData.append("details", inputValue.details);
     formData.append("categroy", inputValue.category);
     try {
+      // making request
       const response = await fetch("/api/create_game", {
         method: "POST",
         body: formData,
       });
-      const data = await response.json();
-      if (response.ok) {
-        toast.success("Successfully Game added!");
+      const data = await response.json(); //getting data
+
+      if (data.result) {
+        toast.success("Successfully Game added!"); //showing alert message if success
       } else {
-        toast.error("something wrong happean");
+        toast.error("something wrong happean"); // showing error if failed
       }
     } catch (err) {
-      toast.error("Something went wrong.");
+      toast.error("Something went wrong."); // for error
       console.log(err);
     }
   }

@@ -12,17 +12,20 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons"; //all icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //<Fontawesome icon={} /> for this
-import Link from "next/link";
+import Link from "next/link"; // <a></a>
 
-import userImage from "@/public/images/myimage.jpg";
-import logo from "@/public/images/logo.png";
-import { useState } from "react";
+import userImage from "@/public/images/myimage.jpg"; // it will be the user image but for now i used a demo one
+import logo from "@/public/images/logo.png"; // website logo
+import { useState } from "react"; //state
 
 export default function DashboardSidebar() {
-  const [sidebaropen, setsidebarope] = useState(true);
+  const [sidebaropen, setsidebarope] = useState(true); // state for sidebar open or not
+
+  // styling accourding to sidebaropen state
   const hide = {
     display: !sidebaropen ? "none" : "block",
   };
+
   return (
     <>
       {/* sidebar */}

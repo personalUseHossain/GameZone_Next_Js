@@ -1,9 +1,9 @@
-import Dashboard from "@/components/Dashboard";
+import Dashboard from "@/components/Dashboard"; // importing dashboard component
 
 export default function page() {
   return (
     <>
-      <Dashboard />
+      <Dashboard />  {/* dashboard component */}
     </>
   );
 }
