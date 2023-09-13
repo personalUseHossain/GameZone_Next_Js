@@ -1,8 +1,10 @@
+"use client";
 import "@/public/CSS/Dashboard/Sidebar.css";
 import Image from "next/image";
 
 //font awesome
 import {
+  faBarsStaggered,
   faCubes,
   faGamepad,
   faHome,
@@ -14,14 +16,26 @@ import Link from "next/link";
 
 import userImage from "@/public/images/myimage.jpg";
 import logo from "@/public/images/logo.png";
+import { useState } from "react";
 
 export default function DashboardSidebar() {
+  const [sidebaropen, setsidebarope] = useState(true);
+  const hide = {
+    display: !sidebaropen ? "none" : "block",
+  };
   return (
     <>
       {/* sidebar */}
-      <div className="sidebar">
+      <div
+        className="sidebar"
+        style={sidebaropen ? { width: "13rem" } : { width: "1rem" }}
+      >
         {/* logo */}
         <div className="dashboard_logo">
+          <FontAwesomeIcon
+            icon={faBarsStaggered}
+            onClick={() => setsidebarope(!sidebaropen)}
+          />
           <Image
             src={logo}
             style={{
@@ -33,7 +47,6 @@ export default function DashboardSidebar() {
             height={40}
             alt="404"
           />
-          <h4>Game Zone</h4>
         </div>
         {/* menu */}
         <div className="dashboard_menu">
@@ -43,7 +56,7 @@ export default function DashboardSidebar() {
           </Link>
           <Link href={"/dashboard/create_game"}>
             <FontAwesomeIcon icon={faPlus} />
-            <h3>Create Game</h3>
+            <h3>Create</h3>
           </Link>
           <Link href={"/dashboard/admin_games"}>
             <FontAwesomeIcon icon={faGamepad} />
@@ -66,8 +79,8 @@ export default function DashboardSidebar() {
             height={40}
             alt="User"
           />
-          <h3>Muhammad Hossain</h3>
-          <small>personal.mdhossain@gmail.com</small>
+          <h3 style={hide}>Muhammad Hossain</h3>
+          <small style={hide}>personal.mdhossain@gmail.com</small>
         </div>
       </div>
     </>
