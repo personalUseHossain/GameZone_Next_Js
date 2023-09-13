@@ -4,10 +4,16 @@
     height: 100vh;
     padding: 0 30px;
     width: 13rem;
+    overflow: hidden;
 }
 .dashboard .sidebar .dashboard_logo{
     display: flex;
     align-items: center;
+    gap: 1rem;
+}
+.dashboard .sidebar .dashboard_logo svg{
+    width: 2rem;
+    font-size: 20px;
 }
 .dashboard .sidebar .dashboard_menu{
     display: grid;
@@ -15,7 +21,7 @@
 }
 .dashboard .sidebar .dashboard_menu a{
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     align-items: center;
     text-decoration: none;
     color: rgb(0, 0, 0);
@@ -26,3 +32,27 @@
     background-color: black;
     color: white;
 }
+
+ @media (width < 1055px) {
+    .dashboard .sidebar{width: 1rem;}
+    .dashboard .adminInfo h3,
+    .dashboard .adminInfo small{
+        display: none;
+    }
+    /* .dashboard .sidebar .dashboard_menu a{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .dashboard .sidebar .dashboard_menu a h3{
+        font-size: 10px;
+    }
+    .dashboard .sidebar .dashboard_menu{
+        place-items: start;
+    }
+    .dashboard .sidebar .dashboard_logo img{
+        display: none;
+    }
+    .dashboard .sidebar .dashboard_logo{
+        justify-content: center;
+    } */
+} 
