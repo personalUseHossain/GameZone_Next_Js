@@ -10,22 +10,27 @@ const gameSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    filesize: {
-        type: Number,
-        required: true
-    },
+    // filesize: {
+    //     type: Number,
+    //     required: true
+    // },
     img: {
-        type: String,
+        type: Array,
         required: true
     },
     downloadlink: {
         type: String,
     },
-    screenshots: [String],
-    platform: {
+    // screenshots: [String],
+    // placatgetform: {
+    //     type: String,
+    //     enum: ["pc", "playstation", "mobile", "xbox", "nitendo", "neogeo", "others", "action", "online"],
+    //     required: true
+    // },
+    category: {
         type: String,
-        enum: ["pc", "playstation", "mobile", "xbox", "nitendo", "neogeo", "others", "action", "online"],
-        required: true
+        required: true,
+        enum: ['action', 'arcade', 'sports', 'racing', 'adventure', 'shooting', 'puzzle']
     },
     rating: {
         type: Number,
@@ -36,6 +41,6 @@ const gameSchema = mongoose.Schema({
 
 mongoose.models = {};
 
-const gameCollection = mongoose.models.game || mongoose.model('game', gameSchema)
+const gameCollection = mongoose.models.games || mongoose.model('games', gameSchema)
 
 export default gameCollection; //export 
