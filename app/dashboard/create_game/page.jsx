@@ -5,12 +5,29 @@ import "@/public/CSS/Dashboard/Create_game.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+// import { uploadPhoto } from "@/actions/uploadPhoto";
 //alert
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
 import "react-toastify/dist/ReactToastify.css"; //for alert/message css
 
 export default function Page() {
   const [images, setImages] = useState([]);
+  const [inputValue, setInputValue] = useState({
+    name: "",
+    link: "",
+    details: "",
+    category: "",
+  });
+
+  function hanldeInputChange(e) {
+    let name = e.target.name,
+      value = e.target.value;
+    setInputValue((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(inputValue);
+  }
 
   const onDrop = useCallback((acceptedFiles) => {
     setImages((prevImages) => [...prevImages, ...acceptedFiles]);
@@ -32,18 +49,69 @@ export default function Page() {
     });
   };
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    for (let i = 0; i < images.length; i++) {
+      formData.append("files", images[i]);
+    }
+    formData.append("name", inputValue.name);
+    formData.append("link", inputValue.link);
+    formData.append("details", inputValue.details);
+    formData.append("categroy", inputValue.category);
+    try {
+      const response = await fetch("/api/create_game", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Successfully Game added!");
+      } else {
+        toast.error("something wrong happean");
+      }
+    } catch (err) {
+      toast.error("Something went wrong.");
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <ToastContainer />
       <div className="insert-game-container">
-        <h1>Insert Game</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h1>Insert Game</h1>
+          <button
+            onClick={() => {
+              setInputValue({
+                name: "",
+                link: "",
+                details: "",
+                category: "",
+              });
+              setImages([]);
+            }}
+            className="reset-btn"
+          >
+            Reset
+          </button>
+        </div>
         <p style={{ color: "gray", marginBottom: "2rem" }}>
           The most important feature in the product editing section is the
           product adding part. When adding products here, do not ignore <br />
           to fill in all the required fields completely and follow the product
           adding rules.
         </p>
-        <form className="game-form">
+        <form className="game-form" onSubmit={handleSubmit}>
           <div className="input-container">
             <div className="insert-game-inputs">
               <label>
@@ -51,27 +119,46 @@ export default function Page() {
                 <input
                   type="text"
                   id="game-name"
+                  name="name"
+                  value={inputValue.name}
                   placeholder="Enter Game Name..."
+                  onChange={hanldeInputChange}
                 />
               </label>
 
               <label>
-                <p>Game Details:</p>
-                <textarea id="game-details" cols="30" rows="10"></textarea>
+                <p>Game Description:</p>
+                <textarea
+                  onChange={hanldeInputChange}
+                  value={inputValue.details}
+                  name="details"
+                  id="game-details"
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </label>
 
               <label>
                 <p>Download Link:</p>
                 <input
                   type="text"
+                  onChange={hanldeInputChange}
                   id="game-link"
+                  name="link"
+                  value={inputValue.link}
                   placeholder="Download Link..."
                 />
               </label>
 
               <label htmlFor="category">
                 <p>Category:</p>
-                <select id="category" name="category" required>
+                <select
+                  onChange={(e) => hanldeInputChange(e)}
+                  name="category"
+                  value={inputValue.category}
+                  id="category"
+                  required
+                >
                   <option value="">Select</option>
                   <option value="action">Action</option>
                   <option value="adventure">Adventure</option>
