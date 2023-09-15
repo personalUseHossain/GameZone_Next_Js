@@ -1,0 +1,93 @@
+.single-game-container{
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    color: white;
+    position: relative;
+}
+.single-game-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  .single-game-container .singleGame-top,
+  .single-game-container .singleGame-bottom{
+    position: relative;
+    z-index: 2;
+  }
+
+.single-game-container .singleGame-top{
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+    align-items: center;
+
+}
+
+.single-game-container .singleGame-top .singleGame-left h1{
+    font-size: 50px;
+    margin-bottom: .5rem;
+}
+.single-game-container .singleGame-top .singleGame-left h5{
+    margin-bottom: .5rem;
+}
+
+.single-game-container .singleGame-top .singleGame-left button{
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 7px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.single-game-container .singleGame-top .singleGame-left button svg{
+    margin-right: 5px;
+}
+.small-image{
+    display: none;
+}
+.small-container{
+    display: none;
+}
+
+@media (width < 967px) {
+    .singleGame-top img{
+        width: 10rem;
+        height: 10rem;
+    }
+    .single-game-container .singleGame-top .singleGame-left h1{
+        font-size: 35px;
+    }
+}
+@media (width < 617px) {
+    .single-game-container .singleGame-top{
+        flex-direction: column-reverse;
+        gap: 4rem;
+    }
+    .singleGame-top img{
+        display: none;
+    }
+    .image-name{
+        display: flex;
+        gap: 1rem;
+    }
+    .small-image{
+        display: block !important;
+    }
+    .big-container{
+        display: none;
+    }
+    .small-container{
+        display: block;
+    }
+}
+@media (width < 473px) {
+    .image-name{flex-direction: column;}
+}
