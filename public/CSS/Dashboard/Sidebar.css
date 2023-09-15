@@ -5,6 +5,8 @@
     padding: 0 30px;
     width: 13rem;
     overflow: hidden;
+    position: sticky;
+    top: 1rem;
 }
 .dashboard .sidebar .dashboard_logo{
     display: flex;
