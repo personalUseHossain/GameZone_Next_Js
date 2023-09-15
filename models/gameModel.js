@@ -30,7 +30,7 @@ const gameSchema = mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['action', 'arcade', 'sports', 'racing', 'adventure', 'shooting', 'puzzle']
+        enum: ['action', 'arcade', 'sports', 'racing', 'adventure', 'shooting', 'puzzle', 'playstation', 'nitendo', 'xbox', 'sega']
     },
     rating: {
         type: Number,
