@@ -10,14 +10,14 @@
 
 
 
-  label p {
+  .insert-game-container p {
     margin-bottom: 8px;
   }
 
-  input[type="text"],
-  input[type="url"],
-  select,
-  textarea {
+  .insert-game-container input[type="text"],
+  .insert-game-container input[type="url"],
+  .insert-game-container select,
+  .insert-game-container textarea {
     margin-bottom: 15px;
     padding: 8px;
     border: 1px solid #ccc;
@@ -30,7 +30,7 @@
     flex-direction: column;
   }
 
-  button {
+  .insert-game-container button {
     background-color: #0070f3;
     color: #fff;
     border: none;
