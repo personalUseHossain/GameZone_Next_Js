@@ -7,17 +7,19 @@ import fs from 'fs/promises' // to save file to local storage
 connect() // connecting to database
 
 
-async function savePhoto(images) {  // save image to local direcotry function
-    //don't know what is going on here
-    const multipleBuffer = images.map(image => {
-        image.arrayBuffer()
-            .then(data => {
-                const buffer = Buffer.from(data);
-                const uploadDir = path.join(process.cwd(), 'public/uploads', `/${image.name}`);
-                fs.writeFile(uploadDir, buffer)
-            })
-    })
+async function savePhoto(images) {
+    const imageArrayName = []; // Array to store image names
+    await Promise.all(images.map(async (image) => {
+        const data = await image.arrayBuffer();
+        const buffer = Buffer.from(data);
+        const imageName = Date.now() + image.name;
+        const uploadDir = path.join(process.cwd(), 'public/uploads', imageName);
+        await fs.writeFile(uploadDir, buffer);
+        imageArrayName.push(imageName);
+    }));
+    return imageArrayName;
 }
+
 
 
 export async function POST(req) {
@@ -35,9 +37,9 @@ export async function POST(req) {
     }
 
     try {
-        const newImage = await savePhoto(images) //calling the save image function
-        const imageName = []; //array to save image name
-        images.forEach((image) => imageName.push(image.name)) //saving image name to imageName array
+        const imageName = await savePhoto(images) //calling the save image function
+        // const imageName = []; //array to save image name
+        // images.forEach((image) => imageName.push(image.name)) //saving image name to imageName array
 
         //creating new document
         const newGame = new gameCollection({
