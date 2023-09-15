@@ -82,6 +82,13 @@ export default function Page() {
 
       if (data.result) {
         toast.success("Successfully Game added!"); //showing alert message if success
+        setInputValue({
+          name: "",
+          link: "",
+          details: "",
+          category: "",
+        });
+        setImages([]);
       } else {
         toast.error("something wrong happean"); // showing error if failed
       }
@@ -180,6 +187,10 @@ export default function Page() {
                   <option value="arcade">Arcade</option>
                   <option value="shooting">Shooting</option>
                   <option value="sports">Sports</option>
+                  <option value="playstation">PlayStation</option>
+                  <option value="nitendo">Nitendo</option>
+                  <option value="sega">Sega</option>
+                  <option value="xbox">XBox</option>
                 </select>
               </label>
             </div>
