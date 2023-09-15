@@ -34,6 +34,9 @@
     flex-wrap: nowrap;
     width: fit-content; 
 }
+.sega-game-container a{
+    text-decoration: none;
+}
 .game-section{
     overflow-x: auto;
     margin-bottom: 5rem;
@@ -43,14 +46,19 @@
 }
 
   .game {
-    width: 30vw;
     flex: 0 0 auto;
-    max-width: 15rem;
+    max-width: 17rem;
+    cursor: pointer;
+
+    color: white;
   }
   
   .game img {
-    width: 100%; 
-    height: auto; 
+    width: 13rem; 
+    height: 13rem; 
+    object-fit: cover;
+    border-radius: 10px;
+    aspect-ratio: 1/1;
   }
 
 @media (width < 582px){
