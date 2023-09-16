@@ -9,7 +9,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons"; //fontawesome
 
-import React from "react"; //react for hooks
+import React, { useContext } from "react"; //react for hooks
 import { useState } from "react"; //useState hooks
 import Link from "next/link"; //for navigate to login page
 import { useRouter } from "next/navigation"; //for redirect user to login page
@@ -19,6 +19,7 @@ import "@/public/CSS/Login.css"; //adding styling
 //alert
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
 import "react-toastify/dist/ReactToastify.css"; //for alert/message css
+import { MyContext } from "../layout";
 
 export default function page() {
   const router = useRouter(); // to push user to login page
@@ -29,6 +30,7 @@ export default function page() {
     password: "",
     confirmPassword: "",
   }); // signup user information state
+  const { setLoading } = useContext(MyContext);
 
   //hanlde input change and save it on userDetails state
   function handleInputChange(e) {
@@ -42,6 +44,7 @@ export default function page() {
 
   //handle form submit
   function handleSubmit(e) {
+    setLoading(true);
     e.preventDefault();
     if (userDetails.password !== userDetails.confirmPassword) {
       return toast.error("Password and confirm password dosen't match");
@@ -56,6 +59,7 @@ export default function page() {
     })
       .then((res) => res.json())
       .then((data) => {
+        setLoading(false);
         if (data.status === 201) {
           toast.success(data.message);
           setTimeout(() => {

@@ -21,6 +21,7 @@ export default function page() {
     email: "",
     password: "",
   }); //input values state
+  const { setLoading } = useContext(MyContext);
   const { login, setLogin } = useContext(MyContext); // get value's from context
   const router = useRouter(); //to push user to other page after logged in
 
@@ -36,6 +37,7 @@ export default function page() {
 
   //login function hanlde submit form
   async function handleSubmit(e) {
+    setLoading(true);
     e.preventDefault();
     try {
       const res = await fetch("/api/login", {
@@ -47,15 +49,13 @@ export default function page() {
       });
       const data = await res.json();
       console.log(data);
+
       if (data.status === 200) {
-        toast.success(data.message, {
-          onClose: () => {
-            router.push("/");
-            setLogin(true);
-          },
-        });
+        setLogin(true);
+        toast.success(data.message);
         setTimeout(() => {
           router.push("/");
+          setLoading(false);
         }, 3000);
       } else if (data.status === 400 || 401 || 500) {
         toast.error(data.error);
