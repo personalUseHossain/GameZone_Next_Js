@@ -27,8 +27,8 @@ export async function POST(req) {
         }
         const token = await jwt.sign(tokenPayload, process.env.JWT_SECRET)  //sign cookie with jsonwebtoken
         //expires date of cookie
-        // const expirationDate = new Date();
-        // expirationDate.setMonth(expirationDate.getMonth() + 1);
+        const expirationDate = new Date();
+        expirationDate.setMonth(expirationDate.getMonth() + 1);
 
         //creating response and attach the cookie with it
         const response = NextResponse.json({
@@ -40,8 +40,7 @@ export async function POST(req) {
 
         //cookie
         response.cookies.set('gamezonetoken', token, {
-            // httpOnly: true,
-            // expires: expirationDate,
+            expires: expirationDate,
         })
         return response; //send response
     } catch (error) {
