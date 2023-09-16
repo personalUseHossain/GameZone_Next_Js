@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "@/public/CSS/PopularGame.css";
 import Image from "next/image";
 
@@ -11,13 +11,21 @@ import playstation from "@/public/images/playstation logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { MyContext } from "@/app/layout";
+
+//image lazy loading
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function PopularGame() {
+  const { setLoading } = useContext(MyContext); //getting data for loading status
   const [games, SetGames] = useState([]);
   async function fetchData() {
+    setLoading(true);
     const req = await fetch("/api/games");
     const res = await req.json();
     SetGames(res.data);
+    setLoading(false);
   }
   useEffect(() => {
     fetchData();
@@ -29,8 +37,9 @@ export default function PopularGame() {
           Popular Games
         </h1>
         {/* nitendo */}
-        <Image
-          src={nitendoLogo}
+        <LazyLoadImage
+          effect="blur"
+          src={nitendoLogo.src}
           height={70}
           width={70}
           className="logo"
@@ -43,7 +52,8 @@ export default function PopularGame() {
               .map((game) => (
                 <Link href={`/game/${game._id}`}>
                   <div className="game" key={game._id}>
-                    <Image
+                    <LazyLoadImage
+                      effect="blur"
                       src={`/uploads/${game.img[0]}`}
                       height={150}
                       width={150}
@@ -56,7 +66,14 @@ export default function PopularGame() {
           </div>
         </div>
         {/* sega */}
-        <Image className="logo" src={sega} height={70} width={70} alt="404" />
+        <LazyLoadImage
+          effect="blur"
+          className="logo"
+          src={sega.src}
+          height={70}
+          width={70}
+          alt="404"
+        />
         <div className="game-section">
           <div className="sega-game-container game-container">
             {games
@@ -64,7 +81,8 @@ export default function PopularGame() {
               .map((game) => (
                 <Link href={`/game/${game._id}`}>
                   <div className="game" key={game._id}>
-                    <Image
+                    <LazyLoadImage
+                      effect="blur"
                       src={`/uploads/${game.img[0]}`}
                       height={150}
                       width={150}
@@ -77,7 +95,14 @@ export default function PopularGame() {
           </div>
         </div>
         {/* xbox */}
-        <Image className="logo" src={xbox} height={70} width={70} alt="404" />
+        <LazyLoadImage
+          effect="blur"
+          className="logo"
+          src={xbox.src}
+          height={70}
+          width={70}
+          alt="404"
+        />
         <div className="game-section">
           <div className="sega-game-container game-container">
             {games
@@ -85,7 +110,8 @@ export default function PopularGame() {
               .map((game) => (
                 <Link href={`/game/${game._id}`}>
                   <div className="game" key={game._id}>
-                    <Image
+                    <LazyLoadImage
+                      effect="blur"
                       src={`/uploads/${game.img[0]}`}
                       height={150}
                       width={150}
@@ -98,9 +124,10 @@ export default function PopularGame() {
           </div>
         </div>
         {/* playstation */}
-        <Image
+        <LazyLoadImage
+          effect="blur"
           className="logo"
-          src={playstation}
+          src={playstation.src}
           height={70}
           width={70}
           alt="404"
@@ -113,7 +140,8 @@ export default function PopularGame() {
                 .map((game) => (
                   <Link href={`/game/${game._id}`}>
                     <div className="game" key={game._id}>
-                      <Image
+                      <LazyLoadImage
+                        effect="blur"
                         src={"/uploads/" + game.img[0]}
                         height={150}
                         width={150}
@@ -141,7 +169,8 @@ export default function PopularGame() {
                 .map((game) => (
                   <Link href={`/game/${game._id}`}>
                     <div className="game" key={game._id}>
-                      <Image
+                      <LazyLoadImage
+                        effect="blur"
                         src={"/uploads/" + game.img[0]}
                         height={150}
                         width={150}
@@ -166,7 +195,6 @@ export default function PopularGame() {
           Load more
         </button>
       </div>
-      <Link href={"/hoga"}>Hoga</Link>
     </>
   );
 }
