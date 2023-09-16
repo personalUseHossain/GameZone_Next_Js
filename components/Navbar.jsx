@@ -18,6 +18,10 @@ import { MyContext } from "@/app/layout";
 import { getUserData } from "@/utils/getUserData"; // getting user data from cookies
 import { signout } from "@/utils/auth"; //signout function from utils/auth
 
+//image lazy loading
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 //font awesome
 import {
   faMagnifyingGlass,
@@ -44,7 +48,7 @@ export default function Navbar(props) {
   const router = useRouter(); // for push user to other pages
   const [isMenuOpen, setIsMenuOpen] = useState(false); // navbar menu-user (home, about etc) is open or not
   const [openMenu, setOpenMenu] = useState(false); // don't know what
-  const { login, setLogin } = useContext(MyContext); // getting context data (check if user logged in or not)
+  const { login, setLogin, setLoading } = useContext(MyContext); // getting context data (check if user logged in or not)
   const [userData, setUserData] = useState([]); // userData if logged in
   const cookies = new Cookies(); // for getting cookies
   const token = cookies.get("gamezonetoken"); // token of this website
@@ -52,10 +56,12 @@ export default function Navbar(props) {
   // to set the login if user login which is verify in utils/auth.js
   useEffect(() => {
     async function fetchData() {
-      const data = await getUserData();
+      setLoading(true);
+      const data = await getUserData(token);
       if (data) {
         setUserData(data);
       }
+      setLoading(false);
     }
     fetchData();
   }, [token]);
@@ -71,13 +77,12 @@ export default function Navbar(props) {
       document.body.style.overflow = "auto";
     }
   }
-
   //logout function
   function logout() {
     signout();
     setLogin(false);
-    toast.success("Logged out");
     router.push("/");
+    toast.success("Logged out");
   }
   const userImage = userData.img === null ? notloginimage : userData.img;
   return (
@@ -168,13 +173,14 @@ export default function Navbar(props) {
               </>
             ) : (
               <>
-                <Image
+                <LazyLoadImage
+                  effect="blur"
                   onClick={() => {
                     document.querySelector(
                       ".user-content-container"
                     ).style.display = "block";
                   }}
-                  src={userImage}
+                  src={userImage && userImage.src}
                   width={40}
                   height={40}
                   alt="User"
@@ -182,8 +188,9 @@ export default function Navbar(props) {
                 <div className="user-content-container">
                   <div className="user-top">
                     <div className="user-top-left">
-                      <Image
-                        src={userImage}
+                      <LazyLoadImage
+                        effect="blur"
+                        src={userImage && userImage.src}
                         width={40}
                         height={40}
                         alt="User"
