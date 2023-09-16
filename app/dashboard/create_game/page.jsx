@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react"; //state
+import React, { useCallback, useContext, useEffect, useState } from "react"; //state
 import { useDropzone } from "react-dropzone"; // dropzone for import images
 import "@/public/CSS/Dashboard/Create_game.css"; //css
 
@@ -12,6 +12,11 @@ import Image from "next/image"; // <img/>
 // alert
 import { ToastContainer, toast } from "react-toastify"; //for alert/message
 import "react-toastify/dist/ReactToastify.css"; //for alert/message css
+import { MyContext } from "@/app/layout";
+
+//image lazy loading
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function Page() {
   const [images, setImages] = useState([]); //all droped image state
@@ -21,6 +26,7 @@ export default function Page() {
     details: "",
     category: "",
   }); //all input state
+  const { setLoading } = useContext(MyContext);
 
   //for hanlde input change
   function hanldeInputChange(e) {
@@ -60,6 +66,7 @@ export default function Page() {
 
   //handle form submit
   async function handleSubmit(e) {
+    setLoading(true);
     e.preventDefault(); // not allowing to reload page
 
     const formData = new FormData(); // to send on backend
@@ -92,9 +99,11 @@ export default function Page() {
       } else {
         toast.error("something wrong happean"); // showing error if failed
       }
+      setLoading(false);
     } catch (err) {
       toast.error("Something went wrong."); // for error
       console.log(err);
+      setLoading(false);
     }
   }
 
@@ -217,8 +226,9 @@ export default function Page() {
               <div className="image-preview-container">
                 {images.slice(0, 4).map((image, index) => (
                   <div className="image-preview">
-                    <Image
+                    <LazyLoadImage
                       key={index}
+                      effect="blur"
                       width={100}
                       height={100}
                       src={URL.createObjectURL(image)}
