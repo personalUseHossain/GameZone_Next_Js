@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar'
 import { createContext, useState, useEffect } from 'react'
 import { isAuth } from '@/utils/auth'
 import { usePathname } from 'next/navigation'
+import Loading from '@/components/Loading'
 
 
 
@@ -22,13 +23,12 @@ export const MyContext = createContext();
 
 export default function RootLayout({ children }) {
   const [login, setLogin] = useState(false);
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
       setLogin(await isAuth())
     };
-    console.log(login)
     fetchAuthStatus();
   }, []);
 
@@ -38,7 +38,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <MyContext.Provider value={{ login, setLogin }}>
+        <MyContext.Provider value={{ login, setLogin, loading, setLoading }}>
+          {loading && <Loading />}
           <Navbar style={isDashboardPage ? 'none' : 'flex'} />
           {children}
         </MyContext.Provider>
