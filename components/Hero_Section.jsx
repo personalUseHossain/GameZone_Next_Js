@@ -34,7 +34,7 @@ export default function Hero_Section() {
           height={1000}
           src={currentImage}
           className="hero-slider-image"
-          alt="404"
+          alt="image not found"
         />
       </div>
       <div className="hero-section">
