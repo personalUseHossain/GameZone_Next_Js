@@ -59,7 +59,7 @@ export default function PopularGame() {
                       width={150}
                       alt="404"
                     />
-                    <h4>{game.name}</h4>
+                    <h4>{game.name.slice(0, 16) + "..."}</h4>
                   </div>
                 </Link>
               ))}
@@ -88,7 +88,7 @@ export default function PopularGame() {
                       width={150}
                       alt="404"
                     />
-                    <h4>{game.name}</h4>
+                    <h4>{game.name.slice(0, 16) + "..."}</h4>
                   </div>
                 </Link>
               ))}
@@ -117,7 +117,7 @@ export default function PopularGame() {
                       width={150}
                       alt="404"
                     />
-                    <h4>{game.name}</h4>
+                    <h4>{game.name.slice(0, 16) + "..."}</h4>
                   </div>
                 </Link>
               ))}
@@ -147,7 +147,7 @@ export default function PopularGame() {
                         width={150}
                         alt="404"
                       />
-                      <h4>{game.name}</h4>
+                      <h4>{game.name.slice(0, 16) + "..."}</h4>
                     </div>
                   </Link>
                 ))}
@@ -176,7 +176,7 @@ export default function PopularGame() {
                         width={150}
                         alt="404"
                       />
-                      <h4>{game.name}</h4>
+                      <h4>{game.name.slice(0, 16) + "..."}</h4>
                     </div>
                   </Link>
                 ))}
