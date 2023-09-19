@@ -44,6 +44,12 @@
 .game-section::-webkit-scrollbar{
     display: none;
 }
+.not-popular-game{
+    overflow-x: none !important;
+}
+.game-section-game{
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+}
 
   .game {
     flex: 0 0 auto;
