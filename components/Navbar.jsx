@@ -112,7 +112,7 @@ export default function Navbar(props) {
               </div>
             </Link>
             <div className="search">
-              <input type="text" placeholder="Search..." />
+              <input type="text" placeholder="Search Game..." />
               <FontAwesomeIcon
                 className="search_icon_input"
                 icon={faMagnifyingGlass}
@@ -210,7 +210,12 @@ export default function Navbar(props) {
                     </div>
                   </div>
                   <div className="user-bottom">
-                    <div className="user-bottom-content">
+                    <div
+                      className="user-bottom-content"
+                      onClick={() => {
+                        toast.error("This page dosen't exist");
+                      }}
+                    >
                       <FontAwesomeIcon icon={faBookmark} />
                       <h4>Saved Games</h4>
                     </div>
@@ -218,11 +223,21 @@ export default function Navbar(props) {
                       <FontAwesomeIcon icon={faArrowRightFromBracket} />
                       <h4>Sign out</h4>
                     </div>
-                    <div className="user-bottom-content">
+                    <div
+                      className="user-bottom-content"
+                      onClick={() => {
+                        toast.error("This page dosen't exist");
+                      }}
+                    >
                       <FontAwesomeIcon icon={faMessage} />
                       <h4>Send Feedback</h4>
                     </div>
-                    <div className="user-bottom-content">
+                    <div
+                      className="user-bottom-content"
+                      onClick={() => {
+                        toast.error("This page dosen't exist");
+                      }}
+                    >
                       <FontAwesomeIcon icon={faCircleQuestion} />
                       <h4>Support</h4>
                     </div>
@@ -240,6 +255,7 @@ export default function Navbar(props) {
               display: "flex",
               gap: "1rem",
               alignItems: "center",
+              width: "100vw",
             }}
           >
             <FontAwesomeIcon
