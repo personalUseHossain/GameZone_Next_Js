@@ -10,11 +10,11 @@ export async function middleware(req) {
         return NextResponse.redirect('http://localhost:3000');
     }
     if (!token && path.startsWith('/game')) {
-        return NextResponse.redirect('http://localhost:3000/login');
+        const redirect = path
+        return NextResponse.redirect(`http://localhost:3000/login?redirect=${redirect}`);
     }
 
     if (path.startsWith('/dashboard')) {
-
         const userData = await getUserData(token);
         if (userData.isAdmin === undefined) {
             return NextResponse.redirect('http://localhost:3000');
@@ -25,5 +25,5 @@ export async function middleware(req) {
 
 //  See "Matching Paths" below to learn more
 export const config = {
-    matcher: ['/login', '/signup', '/dashboard/:path*', '/game/:path*']
+    matcher: ['/login', '/signup', '/dashboard/:path*', '/game/:path*',]
 }
