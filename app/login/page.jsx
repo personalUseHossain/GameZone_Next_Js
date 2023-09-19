@@ -1,12 +1,12 @@
 "use client";
 
 //font awesome
-import { faKey, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faChessKing, faKey, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import React, { useContext, useState } from "react"; //react hooks
+import React, { useContext, useEffect, useState } from "react"; //react hooks
 import Link from "next/link"; // link from next js to navigate user to signup
-import { useRouter } from "next/navigation"; //for redirect user to login page
+import { useRouter, useSearchParams } from "next/navigation"; //for redirect user to login page
 import { MyContext } from "@/app/layout"; //context api
 
 import "@/public/CSS/Login.css"; //css
@@ -22,8 +22,11 @@ export default function page() {
     password: "",
   }); //input values state
   const { setLoading } = useContext(MyContext);
+  const nextRouter = useRouter();
   const { login, setLogin } = useContext(MyContext); // get value's from context
   const router = useRouter(); //to push user to other page after logged in
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect");
 
   //hanlde input change and set the value on the input value state
   function handleInputChange(e) {
@@ -34,7 +37,10 @@ export default function page() {
       [name]: value,
     });
   }
-
+  function redirect() {
+    if (login) {
+    }
+  }
   //login function hanlde submit form
   async function handleSubmit(e) {
     setLoading(true);
@@ -48,15 +54,11 @@ export default function page() {
         body: JSON.stringify(userDetails),
       });
       const data = await res.json();
-      console.log(data);
-
       if (data.status === 200) {
         setLogin(true);
         toast.success(data.message);
-        setTimeout(() => {
-          router.push("/");
-          setLoading(false);
-        }, 3000);
+        nextRouter.push("/");
+        setLoading(false);
       } else if (data.status === 400 || 401 || 500) {
         toast.error(data.error);
       }
