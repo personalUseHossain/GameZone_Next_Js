@@ -7,7 +7,8 @@ import { createContext, useState, useEffect } from 'react'
 import { isAuth } from '@/utils/auth'
 import { usePathname } from 'next/navigation'
 import Loading from '@/components/Loading'
-
+import { useRouter } from 'next/navigation';
+import Footer from '@/components/Footer'
 
 
 
@@ -24,6 +25,10 @@ export const MyContext = createContext();
 export default function RootLayout({ children }) {
   const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+
+
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -34,7 +39,6 @@ export default function RootLayout({ children }) {
 
   const pathname = usePathname()
   const isDashboardPage = pathname.startsWith('/dashboard') ? true : false;
-
   return (
     <html lang="en">
       <body>
@@ -42,6 +46,7 @@ export default function RootLayout({ children }) {
           {loading && <Loading />}
           <Navbar style={isDashboardPage ? 'none' : 'flex'} />
           {children}
+          <Footer />
         </MyContext.Provider>
       </body>
     </html>
