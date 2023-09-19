@@ -46,11 +46,21 @@ export default function GamePage(id) {
     checkIsAdmin();
     fetchData();
   }, []);
-  const backgroundImage = gameInfo.img
-    ? {
-        background: `url(/uploads/${gameInfo.img[0]})`,
-      }
-    : {};
+  const backgroundImage =
+    gameInfo && gameInfo.img
+      ? {
+          background: `url(/uploads/${gameInfo.img[0]})`,
+        }
+      : {};
+
+  async function handleDeleteGame() {
+    const req = await fetch(`/api/delete/${gameId}`);
+    const res = await req.json();
+    if (res.status) {
+      return window.history.back();
+    }
+    if (!res.status) return toast.success(res.message);
+  }
   return (
     <div className="single-game-container" style={backgroundImage}>
       <div className="singleGame-top">
@@ -83,7 +93,6 @@ export default function GamePage(id) {
                             color: "black",
                             backgroundColor: "greenyellow",
                           }}
-                          onClick={() => toast.error("Share don't work")}
                         >
                           <FontAwesomeIcon icon={faPencil} /> Edit
                         </button>
@@ -94,7 +103,7 @@ export default function GamePage(id) {
                           backgroundColor: "red",
                           marginTop: "10px",
                         }}
-                        onClick={() => toast.error("Share don't work")}
+                        onClick={handleDeleteGame}
                       >
                         <FontAwesomeIcon icon={faTrash} /> Delete
                       </button>
@@ -122,7 +131,10 @@ export default function GamePage(id) {
                       <FontAwesomeIcon icon={faPencil} /> Edit
                     </button>
                   </Link>
-                  <button style={{ color: "black", backgroundColor: "red" }}>
+                  <button
+                    onClick={handleDeleteGame}
+                    style={{ color: "black", backgroundColor: "red" }}
+                  >
                     <FontAwesomeIcon icon={faTrash} /> Delete
                   </button>
                 </>
