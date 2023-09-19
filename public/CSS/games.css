@@ -1,0 +1,42 @@
+.games-container{
+    display: grid;
+    width: 94vw;
+    padding: 100px 20px 20px 20px;
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+    place-items: center;
+    row-gap: 3rem;
+}
+.background-game-section{
+    position: relative;
+    padding: 0 0 50px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 10;
+    background: linear-gradient(84deg, rgba(10,217,204,0.9360994397759104) 1%, rgba(6,20,211,0.9248949579831933) 47%, rgba(126,168,230,0.5887605042016807) 100%), url('https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?cs=srgb&dl=pexels-lucie-liz-3165335.jpg&fm=jpg');
+}
+.background-game-section::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.games-container a{
+    text-decoration: none;
+    color: white;
+    width: 66%;
+}
+.games-container .game{
+    width: 100%;
+    display: grid;
+    gap: 7px;
+    place-items: center;
+}
+.games-container .game img{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+}
