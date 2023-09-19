@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"; // react hooks
 import Image from "next/image"; // Image tag from next js
 
 import "@/public/CSS/Hero_Section.css"; // css
+import Link from "next/link";
 
 //image
 import game_controller_pic from "/public/images/game_controller_pic.png";
@@ -44,8 +45,12 @@ export default function Hero_Section() {
             Discover the Ultimate <br />
             Gaming Experience.
           </h1>
-          <button>Explore</button>
-          <button>Start Downloading</button>
+          <Link href={"/games"}>
+            <button>Explore</button>
+          </Link>
+          <Link href={"/games"}>
+            <button>Start Downloading</button>
+          </Link>
         </div>
         <div className="hero-right">
           <Image
