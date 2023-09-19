@@ -1,0 +1,108 @@
+/* Footer.css */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+    display: grid;
+    place-items: center
+    ;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 5rem;
+    padding: 0 30px;
+    gap: 3rem;
+  }
+  
+
+  
+  .footer-quick-nav ul {
+    list-style: none;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .footer-quick-nav li {
+    margin: 10px;
+  }
+  
+  .footer-quick-nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-quick-nav a:hover {
+    color: skyblue; /* Change the color on hover */
+  }
+  
+  .footer-input input[type="email"] {
+    padding: 10px;
+    width: 100%;
+    border: none;
+
+  }
+  
+  .footer-input button {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .footer-input{
+    display: flex;
+  }
+  .footer-input button:hover {
+    background-color: #ff9900; /* Change the color on hover */
+  }
+  
+  .footer-social{
+    display: flex;
+    gap: 1rem;
+  }
+  .footer-social a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-size: 20px;
+    background-color: skyblue;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-social a:hover {
+    background-color: #ff6600; /* Change the color on hover */
+  }
+  
+  .footer-copyright {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .footer-quick-nav ul {
+      text-align: center;
+    }
+  
+    .footer-quick-nav li {
+      margin: 5px;
+    }
+  }
+  
