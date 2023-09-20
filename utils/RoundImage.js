@@ -4,7 +4,7 @@ import cod from "@/public/images/Hero_slider/cod.webp";
 import fortnite from "@/public/images/Hero_slider/fortnite.webp";
 import gta from "@/public/images/Hero_slider/gta.jpg";
 import neogeogames from "@/public/images/Hero_slider/neogeogames.jpg";
-import nitendo from "@/public/images/Hero_slider/nitendo.jpg";
+import nitendo from "@/public/images/Hero_slider/Nitendo.jpg";
 import playstation from "@/public/images/Hero_slider/playstationgame.webp";
 import pubg from "@/public/images/Hero_slider/pubg.jpg";
 import sega from "@/public/images/Hero_slider/sega.webp";
