@@ -15,6 +15,7 @@ export async function GET(req) {
             { keyword: { $regex: keywordRegex } },
             { keyword: 0 } // Exclude the "keyword" field from the results
         );
+        console.log(games)
         return NextResponse.json({ message: 'success', data: games });
     }
     let games = await gameCollection.find({}, { keyword: 0 }); // Exclude the "keyword" field
