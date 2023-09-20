@@ -31,7 +31,7 @@ function Footer() {
         <div className="footer-quick-nav">
           <ul>
             <li>
-              <Link href="#">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
               <Link href="/games">Games</Link>
@@ -49,10 +49,16 @@ function Footer() {
           <button>Subscribe</button>
         </div>
         <div className="footer-social">
-          <a href="#">
+          <a
+            target="_blank"
+            href="https://www.facebook.com/hossain.sikder.716/"
+          >
             <FontAwesomeIcon icon={faFacebookF} />
           </a>
-          <a href="#">
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/muhammad-hossain-a14b83265/"
+          >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
           <a href="#">
@@ -61,9 +67,9 @@ function Footer() {
         </div>
       </div>
       <div className="footer-copyright">
-        &copy; {new Date().getFullYear()} Your Company Name. All rights
-        reserved.
+        &copy; {new Date().getFullYear()} Your GameZone. All rights reserved.
       </div>
+      <p>Made by Hossain</p>
     </footer>
   );
 }

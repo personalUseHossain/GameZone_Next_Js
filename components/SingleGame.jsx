@@ -2,8 +2,18 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function SingleGame(props) {
+  async function handleDeleteGame() {
+    const req = await fetch(`/api/delete/${gameId}`);
+    const res = await req.json();
+    if (res.status) {
+      return window.history.back();
+    }
+    if (!res.status) return toast.success(res.message);
+  }
   return props.games.map((game) => {
     return (
       <>
@@ -19,6 +29,16 @@ export default function SingleGame(props) {
               alt="404"
             />
             <h4>{game.name}</h4>
+            <Link
+              style={{
+                padding: "7px",
+                background: "yellowgreen",
+                borderRadius: "10px",
+              }}
+              href={`/dashboard/update_game/${game._id}`}
+            >
+              <FontAwesomeIcon style={{ marginTop: "1rem" }} icon={faPencil} />
+            </Link>
           </Link>
         </div>
       </>

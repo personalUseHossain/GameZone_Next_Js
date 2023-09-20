@@ -32,11 +32,11 @@ const gameSchema = mongoose.Schema({
         required: true,
         enum: ['action', 'arcade', 'sports', 'racing', 'adventure', 'shooting', 'puzzle', 'playstation', 'nitendo', 'xbox', 'sega']
     },
-    rating: {
-        type: Number,
-        min: 0,
-        max: 5
+    keyword: {
+        type: String,
+        required: true
     }
+
 })
 
 mongoose.models = {};

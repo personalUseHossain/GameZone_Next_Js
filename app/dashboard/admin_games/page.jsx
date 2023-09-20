@@ -15,7 +15,14 @@ export default function page() {
     setGames(data.data);
     setLoading(false);
   }
-
+  const [search, setSerach] = useState("");
+  async function handleSearch() {
+    setLoading(true);
+    const req = await fetch(`/api/games?search=${search}`);
+    const res = await req.json();
+    setGames(res.data);
+    setLoading(false);
+  }
   useEffect(() => {
     fetchData();
   }, []);
@@ -23,8 +30,13 @@ export default function page() {
   return (
     <div className="admin-game">
       <div className="admin-game-nav">
-        <input type="text" placeholder="Search..." />
-        <button>Search</button>
+        <input
+          onChange={(e) => setSerach(e.target.value)}
+          value={search}
+          type="text"
+          placeholder="Search..."
+        />
+        <button onClick={handleSearch}>Search</button>
       </div>
 
       <>
@@ -33,6 +45,13 @@ export default function page() {
           <SingleGame games={games} />
         </div>
       </>
+      {games.length < 1 && (
+        <>
+          <h1 style={{ margin: "10rem auto", textAlign: "center" }}>
+            No Game Found
+          </h1>
+        </>
+      )}
     </div>
   );
 }

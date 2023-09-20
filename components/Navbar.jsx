@@ -51,6 +51,7 @@ export default function Navbar(props) {
   const { login, setLogin, setLoading } = useContext(MyContext); // getting context data (check if user logged in or not)
   const [userData, setUserData] = useState([]); // userData if logged in
   const cookies = new Cookies(); // for getting cookies
+  const [search, setSearch] = useState("");
   const token = cookies.get("gamezonetoken"); // token of this website
 
   // to set the login if user login which is verify in utils/auth.js
@@ -77,6 +78,7 @@ export default function Navbar(props) {
       document.body.style.overflow = "auto";
     }
   }
+
   //logout function
   function logout() {
     signout();
@@ -112,11 +114,18 @@ export default function Navbar(props) {
               </div>
             </Link>
             <div className="search">
-              <input type="text" placeholder="Search Game..." />
-              <FontAwesomeIcon
-                className="search_icon_input"
-                icon={faMagnifyingGlass}
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                type="text"
+                placeholder="Search Game..."
               />
+              <Link href={`/games?search=${search}`}>
+                <FontAwesomeIcon
+                  className="search_icon_input"
+                  icon={faMagnifyingGlass}
+                />
+              </Link>
             </div>
             <FontAwesomeIcon
               className="search_icon"
@@ -269,14 +278,18 @@ export default function Navbar(props) {
                 padding: "10px",
                 borderRadius: "10px",
               }}
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
               type="text"
               placeholder="Search..."
             />
-            <FontAwesomeIcon
-              style={{ fontSize: "25px" }}
-              className="search_icon_input"
-              icon={faMagnifyingGlass}
-            />
+            <Link href={`/games?search=${search}`} style={{ color: "white" }}>
+              <FontAwesomeIcon
+                style={{ fontSize: "25px" }}
+                className="search_icon_input"
+                icon={faMagnifyingGlass}
+              />
+            </Link>
           </div>
         </>
       )}

@@ -30,6 +30,7 @@ export async function POST(req) {
     const link = data.get('link')
     const details = data.get('details')
     const category = data.get('categroy')
+    const keyword = data.get('keyword')
     const images = data.getAll('files')
 
     if (!data) {
@@ -47,7 +48,8 @@ export async function POST(req) {
             details,
             downloadlink: link,
             category,
-            img: imageName
+            img: imageName,
+            keyword
         })
         await newGame.save(); //saving document to database
         return NextResponse.json({ result: newGame, message: "successfully new game added" }) //sending response to frontend

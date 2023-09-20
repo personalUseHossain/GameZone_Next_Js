@@ -25,6 +25,7 @@ export default function Page() {
     link: "",
     details: "",
     category: "",
+    keyword: "",
   }); //all input state
   const { setLoading } = useContext(MyContext);
 
@@ -79,6 +80,7 @@ export default function Page() {
     formData.append("link", inputValue.link);
     formData.append("details", inputValue.details);
     formData.append("categroy", inputValue.category);
+    formData.append("keyword", inputValue.keyword);
     try {
       // making request
       const response = await fetch("/api/create_game", {
@@ -94,6 +96,7 @@ export default function Page() {
           link: "",
           details: "",
           category: "",
+          keyword: "",
         });
         setImages([]);
       } else {
@@ -162,7 +165,18 @@ export default function Page() {
                   value={inputValue.details}
                   name="details"
                   id="game-details"
-                  cols="30"
+                  cols="20"
+                  rows="10"
+                ></textarea>
+              </label>
+              <label>
+                <p>Game Keyword:</p>
+                <textarea
+                  onChange={hanldeInputChange}
+                  value={inputValue.keyword}
+                  name="keyword"
+                  id="game-details"
+                  cols="20"
                   rows="10"
                 ></textarea>
               </label>

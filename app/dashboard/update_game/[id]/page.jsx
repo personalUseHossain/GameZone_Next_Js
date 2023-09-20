@@ -31,6 +31,7 @@ export default function Page(id) {
     details: "",
     category: "",
     id: "",
+    keyword: "",
   }); //all input state
   const { setLoading } = useContext(MyContext);
 
@@ -44,6 +45,7 @@ export default function Page(id) {
         details: res.result.details,
         link: res.result.downloadlink,
         category: res.result.category,
+        keyword: res.result.keyword,
       });
       setprevImagename(res.result.img);
       const imageURLs = res.result.img.map(
@@ -106,6 +108,7 @@ export default function Page(id) {
     formData.append("link", inputValue.link);
     formData.append("details", inputValue.details);
     formData.append("categroy", inputValue.category);
+    formData.append("keyword", inputValue.keyword);
     formData.append("id", inputValue.id);
     formData.append("prevImage", prevImageName);
 
@@ -186,7 +189,18 @@ export default function Page(id) {
                   value={inputValue.details}
                   name="details"
                   id="game-details"
-                  cols="30"
+                  cols="20"
+                  rows="10"
+                ></textarea>
+              </label>
+              <label>
+                <p>Game Keyword:</p>
+                <textarea
+                  onChange={hanldeInputChange}
+                  value={inputValue.keyword}
+                  name="keyword"
+                  id="game-details"
+                  cols="20"
                   rows="10"
                 ></textarea>
               </label>

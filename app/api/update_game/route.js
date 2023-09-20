@@ -47,6 +47,7 @@ export async function POST(req) {
     const category = data.get('categroy')
     const images = data.getAll('files')
     const prevImage = data.get('prevImage')
+    const keyword = data.get('keyword')
 
     if (!data) {
         return NextResponse.json({ message: "Request body is empty or malformed" }, 400); // if no image attached with the request payload then return;
@@ -63,6 +64,7 @@ export async function POST(req) {
             { _id: id },
             {
                 name,
+                keyword,
                 details,
                 downloadlink: link,
                 category,
