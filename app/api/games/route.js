@@ -18,7 +18,7 @@ export async function GET(req) {
     //     console.log(games)
     //     return NextResponse.json({ message: 'success', data: games });
     // }
-    let games = await gameCollection.find({}, { keyword: 0 }); // Exclude the "keyword" field
+    let games = await gameCollection.find(); // Exclude the "keyword" field
     return NextResponse.json({ message: 'success', data: games });
 }
 
