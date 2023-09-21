@@ -11,7 +11,7 @@ export async function middleware(req) {
     }
     if (!token && path.startsWith('/game')) {
         const redirect = path
-        return NextResponse.redirect(`http://localhost:3000/login?redirect=${redirect}`);
+        return NextResponse.redirect(`http://localhost:3000/login`);
     }
 
     if (path.startsWith('/dashboard')) {
