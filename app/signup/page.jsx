@@ -130,17 +130,20 @@ export default function page() {
         <div className="quickLogin" style={{ display: "flex", gap: "1rem" }}>
           {/* social login images */}
           <img
-            style={{ width: "3rem", borderRadius: "50%" }}
+            onClick={() => toast.error("This don't work")}
+            style={{ width: "3rem", borderRadius: "50%", cursor: "pointer" }}
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFFUTi1RsVDFSupmzDUJ5I3ZHBtwz043rbHQ&usqp=CAU"
             alt=""
           />
           <img
-            style={{ width: "3rem", borderRadius: "50%" }}
+            onClick={() => toast.error("This don't work")}
+            style={{ width: "3rem", borderRadius: "50%", cursor: "pointer" }}
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLCvzw4tunVKd4WFXj-iqZwwm_MnIh4dWf5A&usqp=CAU"
             alt=""
           />
           <img
-            style={{ width: "3rem", borderRadius: "50%" }}
+            onClick={() => toast.error("This don't work")}
+            style={{ width: "3rem", borderRadius: "50%", cursor: "pointer" }}
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGcq7xPymFEJuiJ1wnxaeWRQyWq62TWAekA&usqp=CAU"
             alt=""
           />

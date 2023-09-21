@@ -13,14 +13,27 @@ import {
 } from "@fortawesome/free-solid-svg-icons"; //all icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; //<Fontawesome icon={} /> for this
 import Link from "next/link"; // <a></a>
+import Cookies from "universal-cookie";
 
-import userImage from "@/public/images/myimage.jpg"; // it will be the user image but for now i used a demo one
+import userImage from "@/public/images/demoUser.png"; // it will be the user image but for now i used a demo one
 import logo from "@/public/images/logo.png"; // website logo
-import { useState } from "react"; //state
+import { useEffect, useState } from "react"; //state
+import { getUserData } from "@/utils/getUserData";
 
 export default function DashboardSidebar() {
+  const [userData, setUserData] = useState([]);
   const [sidebaropen, setsidebarope] = useState(true); // state for sidebar open or not
-
+  const cookies = new Cookies();
+  const token = cookies.get("gamezonetoken");
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getUserData(token);
+      if (data) {
+        setUserData(data);
+      }
+    }
+    fetchData();
+  }, [token]);
   // styling accourding to sidebaropen state
   const hide = {
     display: !sidebaropen ? "none" : "block",
@@ -77,13 +90,13 @@ export default function DashboardSidebar() {
         <div className="adminInfo">
           <Image
             style={{ borderRadius: "50%" }}
-            src={userImage}
+            src={userData && userData.img ? userData.img : userImage}
             width={40}
             height={40}
             alt="User"
           />
-          <h3 style={hide}>Muhammad Hossain</h3>
-          <small style={hide}>personal.mdhossain@gmail.com</small>
+          <h3 style={hide}>{userData && userData.name}</h3>
+          <small style={hide}>{userData && userData.email}</small>
         </div>
       </div>
     </>
