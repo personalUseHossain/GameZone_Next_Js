@@ -26,9 +26,7 @@ export default function GamePage(id) {
   //   console.log(gameId);
   async function fetchData() {
     setLoading(true);
-    const req = await fetch(
-      `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/singleGame/${gameId}`
-    );
+    const req = await fetch(`/api/singleGame/${gameId}`);
     const res = await req.json();
     if (res.status) setGameInfo(res.result);
     setLoading(false);
@@ -51,14 +49,12 @@ export default function GamePage(id) {
   const backgroundImage =
     gameInfo && gameInfo.img
       ? {
-          background: `url(/uploads/${gameInfo.img[0]})`,
+          background: `url(https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/uploads/${gameInfo.img[0]})`,
         }
       : {};
 
   async function handleDeleteGame() {
-    const req = await fetch(
-      `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/delete/${gameId}`
-    );
+    const req = await fetch(`/api/delete/${gameId}`);
     const res = await req.json();
     if (res.status) {
       return window.history.back();
@@ -73,7 +69,10 @@ export default function GamePage(id) {
             <Image
               style={{ marginLeft: "1rem" }}
               className="small-image"
-              src={gameInfo.img !== undefined && `/uploads/${gameInfo.img[0]}`}
+              src={
+                gameInfo.img !== undefined &&
+                `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/uploads/${gameInfo.img[0]}`
+              }
               height={70}
               width={70}
               alt="game Image"
@@ -147,7 +146,10 @@ export default function GamePage(id) {
           </div>
         </div>
         <Image
-          src={gameInfo.img !== undefined && `/uploads/${gameInfo.img[0]}`}
+          src={
+            gameInfo.img !== undefined &&
+            `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/uploads/${gameInfo.img[0]}`
+          }
           height={300}
           width={300}
           alt="game Image"

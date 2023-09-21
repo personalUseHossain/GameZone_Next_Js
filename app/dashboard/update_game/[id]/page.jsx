@@ -37,9 +37,7 @@ export default function Page(id) {
 
   useEffect(() => {
     async function fetchGameInfo() {
-      const req = await fetch(
-        `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/singleGame/${id.params.id}`
-      );
+      const req = await fetch(`/api/singleGame/${id.params.id}`);
       const res = await req.json();
       setInputValue({
         id: res.result._id,
@@ -51,7 +49,8 @@ export default function Page(id) {
       });
       setprevImagename(res.result.img);
       const imageURLs = res.result.img.map(
-        (img) => `http://localhost:3000/uploads/${img}`
+        (img) =>
+          `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/uploads/${img}`
       );
       const imageFiles = await URLTOFILE(imageURLs);
       setImages(imageFiles);
@@ -116,13 +115,10 @@ export default function Page(id) {
 
     try {
       // making request
-      const response = await fetch(
-        "https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/update_game",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/update_game", {
+        method: "POST",
+        body: formData,
+      });
       const data = await response.json(); //getting data
 
       if (data.result) {
