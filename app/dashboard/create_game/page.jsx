@@ -83,10 +83,13 @@ export default function Page() {
     formData.append("keyword", inputValue.keyword);
     try {
       // making request
-      const response = await fetch("api/create_game", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/create_game",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       const data = await response.json(); //getting data
 
       if (data.result) {

@@ -20,14 +20,18 @@ export default function PopularGame() {
 
   async function fetchData() {
     setLoading(true); // Setting loading status to true
-    const req = await fetch("api/games"); // Fetching data from the "api/games" endpoint
+    const req = await fetch(
+      "https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/games"
+    ); // Fetching data from the "api/games" endpoint
     const res = await req.json(); // Parsing the response as JSON
     SetGames(res.data); // Updating the games state with fetched data
     setLoading(false); // Setting loading status to false when done
   }
 
   async function searchFetchData() {
-    const req = await fetch(`api/games?search=${search_keyword}`); // Fetching data with a search keyword
+    const req = await fetch(
+      `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/games?search=${search_keyword}`
+    ); // Fetching data with a search keyword
     const res = await req.json(); // Parsing the response as JSON
     SetGames(res.data); // Updating the games state with search results
     console.log(res.data); // Logging the search results to the console
