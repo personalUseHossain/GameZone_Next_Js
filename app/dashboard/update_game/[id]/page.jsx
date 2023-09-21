@@ -37,7 +37,7 @@ export default function Page(id) {
 
   useEffect(() => {
     async function fetchGameInfo() {
-      const req = await fetch(`/api/singleGame/${id.params.id}`);
+      const req = await fetch(`api/singleGame/${id.params.id}`);
       const res = await req.json();
       setInputValue({
         id: res.result._id,
@@ -114,7 +114,7 @@ export default function Page(id) {
 
     try {
       // making request
-      const response = await fetch("/api/update_game", {
+      const response = await fetch("api/update_game", {
         method: "POST",
         body: formData,
       });

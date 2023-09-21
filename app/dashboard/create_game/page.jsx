@@ -83,7 +83,7 @@ export default function Page() {
     formData.append("keyword", inputValue.keyword);
     try {
       // making request
-      const response = await fetch("/api/create_game", {
+      const response = await fetch("api/create_game", {
         method: "POST",
         body: formData,
       });

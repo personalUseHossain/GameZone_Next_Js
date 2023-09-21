@@ -81,7 +81,7 @@ export default function Page(props) {
     formData.append("categroy", inputValue.category);
     try {
       // making request
-      const response = await fetch("/api/create_game", {
+      const response = await fetch("api/create_game", {
         method: "POST",
         body: formData,
       });

@@ -50,7 +50,7 @@ export default function page() {
       return toast.error("Password and confirm password dosen't match");
     }
 
-    fetch("/api/signup", {
+    fetch("api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

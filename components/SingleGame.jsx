@@ -7,7 +7,7 @@ import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function SingleGame(props) {
   async function handleDeleteGame() {
-    const req = await fetch(`/api/delete/${gameId}`);
+    const req = await fetch(`api/delete/${gameId}`);
     const res = await req.json();
     if (res.status) {
       return window.history.back();

@@ -10,7 +10,7 @@ export default function page() {
   const { setLoading } = useContext(MyContext);
   async function fetchData() {
     setLoading(true);
-    const response = await fetch("/api/games");
+    const response = await fetch("api/games");
     const data = await response.json();
     setGames(data.data);
     setLoading(false);
@@ -18,7 +18,7 @@ export default function page() {
   const [search, setSerach] = useState("");
   async function handleSearch() {
     setLoading(true);
-    const req = await fetch(`/api/games?search=${search}`);
+    const req = await fetch(`api/games?search=${search}`);
     const res = await req.json();
     setGames(res.data);
     setLoading(false);
