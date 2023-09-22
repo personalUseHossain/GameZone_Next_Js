@@ -46,13 +46,16 @@ export default function page() {
     setLoading(true);
     e.preventDefault();
     try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userDetails),
-      });
+      const res = await fetch(
+        "https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userDetails),
+        }
+      );
       const data = await res.json();
       if (data.status === 200) {
         setLogin(true);

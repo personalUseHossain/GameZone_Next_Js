@@ -26,7 +26,9 @@ export default function GamePage(id) {
   //   console.log(gameId);
   async function fetchData() {
     setLoading(true);
-    const req = await fetch(`/api/singleGame/${gameId}`);
+    const req = await fetch(
+      `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/singleGame/${gameId}`
+    );
     const res = await req.json();
     if (res.status) setGameInfo(res.result);
     setLoading(false);
@@ -54,7 +56,9 @@ export default function GamePage(id) {
       : {};
 
   async function handleDeleteGame() {
-    const req = await fetch(`/api/delete/${gameId}`);
+    const req = await fetch(
+      `https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/delete/${gameId}`
+    );
     const res = await req.json();
     if (res.status) {
       return window.history.back();
