@@ -22,9 +22,7 @@ export default function PopularGame() {
   const [games, SetGames] = useState([]);
   async function fetchData() {
     setLoading(true);
-    const req = await fetch(
-      "https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/games"
-    );
+    const req = await fetch("/api/games");
     const res = await req.json();
     SetGames(res.data);
     setLoading(false);

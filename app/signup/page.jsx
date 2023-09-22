@@ -50,16 +50,13 @@ export default function page() {
       return toast.error("Password and confirm password dosen't match");
     }
 
-    fetch(
-      "https://gamezone-d9lyq1q4n-personalusehossain.vercel.app/api/signup",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userDetails),
-      }
-    )
+    fetch("/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userDetails),
+    })
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
