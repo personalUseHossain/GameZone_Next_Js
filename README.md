@@ -2,6 +2,8 @@
 #  MovieMingle - Your Ultimate Movie Companion
 **FlickFix** is a dynamic and user-friendly movie website that enhances your cinematic experience. Whether you're a movie enthusiast, a casual viewer, or just looking for something fun to watch, MovieMingle has got you covered. Discover, explore, and connect with the world of cinema like never before.
 
+**This site is live now on:** [FlickFix](flickfix.vercel.app)
+
 
 
 
